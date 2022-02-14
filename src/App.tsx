@@ -20,7 +20,6 @@ function App(): JSX.Element {
             <Button onClick={() => console.log("Hello World!")}>
                 Log Hello World
             </Button>
-            <img src="../assets/images/meme.jpg" alt="A history meme" />
             <Container>
                 <Row>
                     <Col>
