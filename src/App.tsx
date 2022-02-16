@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import meme from "./images/meme.jpg";
 import { Button, Container, Row, Col } from "react-bootstrap";
 
 function App(): JSX.Element {
@@ -20,13 +21,14 @@ function App(): JSX.Element {
             <Button onClick={() => console.log("Hello World!")}>
                 Log Hello World
             </Button>
-            <img src="../assets/images/meme.jpg" alt="A history meme" />
+            <br></br>
+            <img src={meme} alt="A History Meme" width="290" height="256" />
             <Container>
                 <Row>
                     <Col>
                         <div
                             style={{
-                                width: "600px",
+                                width: "300px",
                                 height: "150px",
                                 backgroundColor: "#C83030",
                                 margin: "auto"
@@ -36,7 +38,7 @@ function App(): JSX.Element {
                     <Col>
                         <div
                             style={{
-                                width: "600px",
+                                width: "300px",
                                 height: "150px",
                                 backgroundColor: "#C83030",
                                 margin: "auto"
