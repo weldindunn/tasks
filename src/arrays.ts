@@ -5,12 +5,15 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    let nums = [];
-    if (numbers.length > 1) {
-        nums.push(numbers[0]);
-        nums.push(numbers[numbers.length - 1]);
-    } else if (numbers.length === 1) {
-        nums = [numbers[0], numbers[0]];
+    let nums = [...numbers];
+
+    if (nums.length > 1) {
+        nums = nums.filter(
+            (num: number): boolean =>
+                num === nums[0] || num === nums[nums.length - 1]
+        );
+    } else if (nums.length === 1) {
+        nums = [nums[0], nums[0]];
     }
 
     return nums;
@@ -42,10 +45,10 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    let nums = amounts.map((num: string): string =>
-        num.substring(0, 1) === "$" ? num.substring(1) : num
+    let vals = amounts.map((val: string): string =>
+        val.substring(0, 1) === "$" ? val.substring(1) : val
     );
-    nums = nums.map((num: string): number => ~~num);
+    let nums = vals.map((num: string): number => ~~num);
     return nums;
 };
 
@@ -55,7 +58,11 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    let msgs = messages.map((msg: string): string =>
+        msg.includes("!") ? msg.toUpperCase() : msg
+    );
+    msgs = msgs.filter((msg: string): boolean => !msg.includes("?"));
+    return msgs;
 };
 
 /**
@@ -63,7 +70,9 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    let wrds = words.filter((word: string): boolean => word.length < 4);
+    let sum = wrds.reduce((total: number, word: string) => total + 1, 0);
+    return sum;
 }
 
 /**
@@ -72,7 +81,11 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    let cols = colors.every(
+        (col: string): boolean =>
+            col === "blue" || col === "red" || col === "green"
+    );
+    return cols;
 }
 
 /**
@@ -83,7 +96,15 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length < 1) {
+        return "0=0";
+    } else {
+        let sum = addends.reduce(
+            (total: number, num: number) => total + num,
+            0
+        );
+        return sum + "=" + addends.join("+");
+    }
 }
 
 /**
@@ -96,5 +117,22 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    let vals = [...values];
+    if (!values.find((value: number): boolean => value < 0)) {
+        let sum = values.reduce((total: number, val: number) => total + val, 0);
+        vals.push(sum);
+    } else {
+        let index = vals.findIndex((value: number): boolean => value < 0); //Finds the negative number
+
+        let temp = vals.filter(
+            (val: number): boolean =>
+                vals.findIndex((value: number): boolean => value === val) <
+                index
+        ); //Gets rid of numbers after it
+
+        let sum = temp.reduce((total: number, val: number) => total + val, 0);
+        vals.splice(index + 1, 0, sum);
+    }
+
+    return vals;
 }
