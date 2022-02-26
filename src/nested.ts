@@ -119,7 +119,14 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    return questions.map(
+        (frage: Question): Answer => ({
+            questionId: frage.id,
+            text: "",
+            submitted: false,
+            correct: false
+        })
+    );
 }
 
 /***
@@ -127,7 +134,9 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    return questions.map(
+        (frage: Question): Question => ({ ...frage, published: true })
+    );
 }
 
 /***
@@ -135,7 +144,17 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    if (questions.length > 0) {
+        return (
+            questions.reduce(
+                (total: number, frage: Question) =>
+                    frage.type === questions[0].type ? total + 1 : total,
+                0
+            ) === questions.length
+        );
+    } else {
+        return true;
+    }
 }
 
 /***
@@ -149,7 +168,19 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    return [
+        ...questions,
+        {
+            id: id,
+            name: name,
+            type: type,
+            body: "",
+            expected: "",
+            options: [],
+            points: 1,
+            published: false
+        }
+    ];
 }
 
 /***
@@ -162,7 +193,13 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const index = questions.findIndex(
+        (frage: Question): boolean => frage.id === targetId
+    );
+    const q = { ...questions[index], name: newName };
+    const fragen = [...questions];
+    fragen.splice(index, 1, q);
+    return fragen;
 }
 
 /***
@@ -177,7 +214,16 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const index = questions.findIndex(
+        (frage: Question): boolean => frage.id === targetId
+    );
+    const q = { ...questions[index], type: newQuestionType };
+    if (q.type !== "multiple_choice_question") {
+        q.options = [];
+    }
+    const fragen = [...questions];
+    fragen.splice(index, 1, q);
+    return fragen;
 }
 
 /**
@@ -196,7 +242,18 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ) {
-    return [];
+    const index = questions.findIndex(
+        (frage: Question): boolean => frage.id === targetId
+    );
+    const q = { ...questions[index] };
+    if (targetOptionIndex === -1) {
+        q.options.splice(q.options.length, 0, newOption);
+    } else {
+        q.options.splice(targetOptionIndex, 1, newOption);
+    }
+    const fragen = [...questions];
+    fragen.splice(index, 1, q);
+    return fragen;
 }
 
 /***
@@ -210,5 +267,11 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const index = questions.findIndex(
+        (frage: Question): boolean => frage.id === targetId
+    );
+    const q = { ...questions[index], id: newId };
+    const fragen = [...questions];
+    fragen.splice(index + 1, 0, q);
+    return fragen;
 }
