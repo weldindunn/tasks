@@ -242,16 +242,21 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ) {
-    const index = questions.findIndex(
+    const fragen = questions.map(
+        (frage: Question): Question => ({
+            ...frage,
+            options: [...frage.options]
+        })
+    );
+    const index = fragen.findIndex(
         (frage: Question): boolean => frage.id === targetId
     );
-    const q = { ...questions[index] };
+    const q = { ...fragen[index] };
     if (targetOptionIndex === -1) {
         q.options.splice(q.options.length, 0, newOption);
     } else {
         q.options.splice(targetOptionIndex, 1, newOption);
     }
-    const fragen = [...questions];
     fragen.splice(index, 1, q);
     return fragen;
 }
@@ -267,11 +272,21 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    const index = questions.findIndex(
+    const fragen = questions.map(
+        (frage: Question): Question => ({
+            ...frage,
+            options: [...frage.options]
+        })
+    );
+    const index = fragen.findIndex(
         (frage: Question): boolean => frage.id === targetId
     );
-    const q = { ...questions[index], id: newId };
-    const fragen = [...questions];
+    const q = {
+        ...fragen[index],
+        id: newId,
+        name: "Copy of " + questions[index].name,
+        published: false
+    };
     fragen.splice(index + 1, 0, q);
     return fragen;
 }
