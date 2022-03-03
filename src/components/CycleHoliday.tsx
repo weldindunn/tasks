@@ -24,13 +24,6 @@ const fullName: Record<Holiday, string> = {
     LED: "Leif Eriksson Day",
     HWN: "Halloween"
 };
-const emojiRef: Record<Holiday, string> = {
-    EID: "&#x26F5;",
-    NDDD: "&#x1F9FC;",
-    TLPD: "&#x1F3F4;",
-    LED: "&#x26F5;",
-    HWN: "&#x1F383;"
-};
 
 export function CycleHoliday(): JSX.Element {
     /*Favorite Holidays!
@@ -53,7 +46,20 @@ export function CycleHoliday(): JSX.Element {
     return (
         <div>
             <div>
-                {fullName[holiday]}: {emojiRef[holiday]}
+                {fullName[holiday]}:{" "}
+                {holiday === "EID" ? (
+                    <span>&#x1F1FA;</span>
+                ) : holiday === "NDDD" ? (
+                    <span>&#x1F9FC;</span>
+                ) : holiday === "TLPD" ? (
+                    <span>&#x1F3F4;</span>
+                ) : holiday === "LED" ? (
+                    <span>&#x26F5;</span>
+                ) : holiday === "HWN" ? (
+                    <span>&#x1F383;</span>
+                ) : (
+                    <span></span>
+                )}
             </div>
             <Button onClick={nextAlpha}>Advance by Alphabet</Button>
             <Button onClick={nextChron}>Advance by Year</Button>
