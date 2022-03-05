@@ -17,6 +17,7 @@ const chronOrder: Record<Holiday, Holiday> = {
     LED: "HWN",
     HWN: "ISD"
 };
+/*
 const fullName: Record<Holiday, string> = {
     ISD: "International Spaghetti Day",
     NDDD: "No Dirty Dishes Day",
@@ -24,6 +25,7 @@ const fullName: Record<Holiday, string> = {
     LED: "Leif Eriksson Day",
     HWN: "Halloween"
 };
+*/
 
 export function CycleHoliday(): JSX.Element {
     /*Favorite Holidays!
@@ -34,16 +36,20 @@ export function CycleHoliday(): JSX.Element {
     5. No Dirty Dishes Day (Soap) May 18, x1F9FC
     */
     const [holiday, setHoliday] = useState<Holiday>("HWN");
-    const [visible, setVisible] = useState<boolean>(false);
+    //const [visible, setVisible] = useState<boolean>(false);
 
     function nextAlpha(): void {
-        visible === false ? setHoliday("HWN") : setHoliday(alphaOrder[holiday]);
-        setVisible(true);
+        /*visible === false ? setHoliday("HWN") : */ setHoliday(
+            alphaOrder[holiday]
+        );
+        //setVisible(true);
     }
 
     function nextChron(): void {
-        visible === false ? setHoliday("ISD") : setHoliday(chronOrder[holiday]);
-        setVisible(true);
+        /*visible === false ? setHoliday("ISD") : */ setHoliday(
+            chronOrder[holiday]
+        );
+        //setVisible(true);
     }
 
     return (
@@ -51,23 +57,16 @@ export function CycleHoliday(): JSX.Element {
             <Button onClick={nextAlpha}>Advance by Alphabet</Button>
             <Button onClick={nextChron}>Advance by Year</Button>
             <div>
-                {visible === true ? fullName[holiday] + ": " : <span></span>}
-                {visible === true ? (
-                    holiday === "ISD" ? (
-                        <span>&#x2652;</span>
-                    ) : holiday === "NDDD" ? (
-                        <span>&#x1F9FC;</span>
-                    ) : holiday === "TLPD" ? (
-                        <span>&#x1F3F4;</span>
-                    ) : holiday === "LED" ? (
-                        <span>&#x26F5;</span>
-                    ) : holiday === "HWN" ? (
-                        <span>&#x1F383;</span>
-                    ) : (
-                        <span></span>
-                    )
+                {holiday === "ISD" ? (
+                    <span>Holiday: &#x2652;</span>
+                ) : holiday === "NDDD" ? (
+                    <span>Holiday: &#x1F9FC;</span>
+                ) : holiday === "TLPD" ? (
+                    <span>Holiday: &#x1F3F4;</span>
+                ) : holiday === "LED" ? (
+                    <span>Holiday: &#x26F5;</span>
                 ) : (
-                    <span></span>
+                    <span>Holiday: &#x1F383;</span>
                 )}
             </div>
         </div>
