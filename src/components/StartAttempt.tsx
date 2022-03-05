@@ -31,7 +31,6 @@ export function StartAttempt(): JSX.Element {
             </Button>
             <br></br>
             <div>
-                Quiz in Progress?: <div>{progress}</div>
                 Attempts: <div>{attempts}</div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+/*import { button } from "react-bootstrap";*/
 
 export function RevealAnswer(): JSX.Element {
     const [visible, setVisible] = useState<boolean>(false);
@@ -10,7 +10,7 @@ export function RevealAnswer(): JSX.Element {
 
     return (
         <div>
-            <Button onClick={flipVisibility}>Show/Hide Answer</Button>
+            <button onClick={flipVisibility}>Reveal Answer</button>
             {visible && <div>42</div>}
         </div>
     );
