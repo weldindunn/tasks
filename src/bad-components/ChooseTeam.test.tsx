@@ -58,4 +58,12 @@ describe("ChooseTeam Component tests", () => {
         expect(currentTeam).toHaveLength(1);
         expect(currentTeam[0].textContent).toEqual(fourth.textContent);
     });
+    test("Cannot add team member if already present", () => {
+        const first = screen.queryAllByRole("button")[0];
+        first.click();
+        const firstTeam = screen.queryAllByRole("listitem");
+        first.click();
+        const secondTeam = screen.queryAllByRole("listitem");
+        expect(firstTeam).toEqual(secondTeam);
+    });
 });
