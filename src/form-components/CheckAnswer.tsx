@@ -20,7 +20,7 @@ export function CheckAnswer({
         <div>
             <h3>Check Answer</h3>
             <Form.Group controlId="answerChecker">
-                <Form.Label></Form.Label>
+                <Form.Label>What is 84 divided by 2?</Form.Label>
                 <Form.Control
                     value={answer}
                     onChange={updateAnswer}
