@@ -31,7 +31,7 @@ export function GiveAttempts(): JSX.Element {
                 <Form.Label>Need more attempts? Try this!</Form.Label>
                 <Form.Control
                     type="number"
-                    value={reqAttempts}
+                    value={reqAttempts.toString()}
                     onChange={requestAttempts}
                     placeholder="Enter Attempts Requested"
                 />
