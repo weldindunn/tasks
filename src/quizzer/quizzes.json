@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Title1",
+        "description": "Description",
+        "questions": [],
+        "numPoints": 0,
+        "numQuestions": 0
+    },
+    {
+        "title": "Title2",
+        "description": "Description also?",
+        "questions": [],
+        "numPoints": 5,
+        "numQuestions": 0
+    },
+    {
+        "title": "Title3",
+        "description": "Description again?",
+        "questions": [],
+        "numPoints": 10,
+        "numQuestions": 0
+    }
+]

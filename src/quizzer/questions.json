@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Name1",
+        "body": "Body",
+        "correctAnswer": "42",
+        "type": "short-answer",
+        "options": [],
+        "numPoints": 0,
+        "isPublished": true
+    },
+    {
+        "name": "Name2",
+        "body": "Body, as well",
+        "correctAnswer": "84",
+        "type": "multi-choice",
+        "options": ["42", "84", "168"],
+        "numPoints": 0,
+        "isPublished": true
+    },
+    {
+        "name": "Name1",
+        "body": "Body also",
+        "correctAnswer": "168",
+        "type": "short-answer",
+        "options": [],
+        "numPoints": 0,
+        "isPublished": true
+    }
+]
