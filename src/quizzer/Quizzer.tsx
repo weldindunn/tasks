@@ -25,7 +25,7 @@ export function Quizzer(): JSX.Element {
                 <ol>
                     <li>Application is Sketched</li>
                     <li>Quizzes are Visible</li>
-                    <li></li>
+                    <li>Quizzes have questions</li>
                 </ol>
             </div>
         </div>
