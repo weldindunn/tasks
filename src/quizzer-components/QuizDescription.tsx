@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Button, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Quiz } from "../quizzer-interfaces/quiz";
 
 export function QuizDescription({ quiz }: { quiz: Quiz }): JSX.Element {

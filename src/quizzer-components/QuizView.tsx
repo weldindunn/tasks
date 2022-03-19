@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Button, Col } from "react-bootstrap";
 import { Quiz } from "../quizzer-interfaces/quiz";
 import { QuizDescription } from "./QuizDescription";
+import { Question } from "../quizzer-interfaces/question";
+import { QuestionList } from "./QuestionList";
+import questions from "../quizzer/questions.json";
+
+const QUESTIONS = questions.map((question): Question => ({ ...question }));
 
 export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
+    const [questionsVisible, setQuestionsVisible] = useState<boolean>(false);
+    const [questions /*, setQuestions*/] = useState<Question[]>(QUESTIONS);
+
+    function makeQuestionsVisible(): void {
+        setQuestionsVisible(true);
+    }
+
+    function makeQuestionsInvisible(): void {
+        setQuestionsVisible(false);
+    }
+
     return (
         <Container>
             <Row>
@@ -25,9 +41,21 @@ export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
                     </Row>
                 </Col>
                 <Col>
-                    <Button>Take Quiz</Button>
+                    <Button onClick={makeQuestionsVisible}>Take Quiz</Button>
                 </Col>
             </Row>
+            <div>
+                {questionsVisible ? (
+                    <div>
+                        <QuestionList questions={questions}></QuestionList>
+                        <Button onClick={makeQuestionsInvisible}>
+                            End Quiz
+                        </Button>
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+            </div>
             <hr />
         </Container>
     );
