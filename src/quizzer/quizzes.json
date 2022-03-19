@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Title1",
+        "description": "This is the first quiz!",
+        "questions": [],
+        "numPoints": 0,
+        "numQuestions": 0
+    },
+    {
+        "title": "Title2",
+        "description": "This is the second quiz.",
+        "questions": [],
+        "numPoints": 5,
+        "numQuestions": 0
+    },
+    {
+        "title": "Title3",
+        "description": "Is this really the third quiz?",
+        "questions": [],
+        "numPoints": 10,
+        "numQuestions": 0
+    }
+]
