@@ -1,21 +1,21 @@
 [
     {
         "title": "Title1",
-        "description": "Description",
+        "description": "This is the first quiz!",
         "questions": [],
         "numPoints": 0,
         "numQuestions": 0
     },
     {
         "title": "Title2",
-        "description": "Description also?",
+        "description": "This is the second quiz.",
         "questions": [],
         "numPoints": 5,
         "numQuestions": 0
     },
     {
         "title": "Title3",
-        "description": "Description again?",
+        "description": "Is this really the third quiz?",
         "questions": [],
         "numPoints": 10,
         "numQuestions": 0

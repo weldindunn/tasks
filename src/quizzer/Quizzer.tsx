@@ -7,7 +7,7 @@ import quizzes from "./quizzes.json";
 import questions from "./questions.json";
 import sketch from "./sketch.jpg";
 
-const QUIZZES = quizzes.map((quiz): Quiz => ({ ...quiz }));
+const QUIZZES = quizzes.map((quiz): Quiz => ({ ...quiz, numPoints: 0 }));
 const QUESTIONS = questions.map(
     (question): Question => ({ ...question, options: [] })
 );
@@ -23,6 +23,15 @@ export function Quizzer(): JSX.Element {
 
             <div>
                 <img src={sketch} width="600" height="auto" />
+            </div>
+            <br />
+            <div className={"comp-features"}>
+                <span>Completed Features:</span>
+                <ol>
+                    <li>Application is Sketched</li>
+                    <li>Quizzes are Visible</li>
+                    <li></li>
+                </ol>
             </div>
         </div>
     );
