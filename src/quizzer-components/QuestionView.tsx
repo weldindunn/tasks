@@ -24,7 +24,7 @@ export function QuestionView({
                     </Row>
                 </Col>
                 <Col>
-                    <Button>Take Quiz</Button>
+                    <Button>Submit</Button>
                 </Col>
             </Row>
             <hr />
