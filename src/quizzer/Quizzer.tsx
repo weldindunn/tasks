@@ -13,6 +13,7 @@ export function Quizzer(): JSX.Element {
     return (
         <div>
             <h3>Quizzer</h3>
+
             <QuizList quizzes={quizzes}></QuizList>
             <Button>Add Quiz</Button>
 
@@ -20,6 +21,7 @@ export function Quizzer(): JSX.Element {
                 <img src={sketch} width="600" height="auto" />
             </div>
             <br />
+
             <div className={"comp-features"}>
                 <span>Completed Features:</span>
                 <ol>
