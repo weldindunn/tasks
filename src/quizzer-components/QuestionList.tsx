@@ -4,15 +4,24 @@ import { Question } from "../quizzer-interfaces/question";
 import { QuestionView } from "./QuestionView";
 
 export function QuestionList({
-    questions
+    questions,
+    deleteQuestion,
+    editQuestion
 }: {
     questions: Question[];
+    deleteQuestion: (name: string) => void;
+    editQuestion: (name: string, newQuestion: Question) => void;
 }): JSX.Element {
     return (
         <Stack gap={3}>
             {questions.map((question: Question) => (
                 <div key={question.name}>
-                    <QuestionView question={question}></QuestionView>
+                    <QuestionView
+                        questions={questions}
+                        question={question}
+                        deleteQuestion={deleteQuestion}
+                        editQuestion={editQuestion}
+                    ></QuestionView>
                 </div>
             ))}
         </Stack>

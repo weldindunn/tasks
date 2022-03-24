@@ -10,7 +10,24 @@ const QUESTIONS = questions.map((question): Question => ({ ...question }));
 
 export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
     const [questionsVisible, setQuestionsVisible] = useState<boolean>(false);
-    const [questions /*, setQuestions*/] = useState<Question[]>(QUESTIONS);
+    const [questions, setQuestions] = useState<Question[]>(QUESTIONS);
+
+    function editQuestion(name: string, newQuestion: Question): void {
+        setQuestions(
+            questions.map(
+                (question: Question): Question =>
+                    question.name === name ? newQuestion : question
+            )
+        );
+    }
+
+    function deleteQuestion(name: string): void {
+        setQuestions(
+            questions.filter(
+                (question: Question): boolean => question.name !== name
+            )
+        );
+    }
 
     function makeQuestionsVisible(): void {
         setQuestionsVisible(true);
@@ -47,7 +64,11 @@ export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
             <div>
                 {questionsVisible ? (
                     <div>
-                        <QuestionList questions={questions}></QuestionList>
+                        <QuestionList
+                            questions={questions}
+                            deleteQuestion={deleteQuestion}
+                            editQuestion={editQuestion}
+                        ></QuestionList>
                         <Button onClick={makeQuestionsInvisible}>
                             End Quiz
                         </Button>
