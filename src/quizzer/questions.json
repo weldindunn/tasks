@@ -1,7 +1,7 @@
 [
     {
-        "name": "Name1",
-        "body": "Body",
+        "name": "Question 1",
+        "body": "How many states were there in 1890?",
         "correctAnswer": "42",
         "type": "short-answer",
         "options": [],
@@ -9,7 +9,7 @@
         "isPublished": true
     },
     {
-        "name": "Name2",
+        "name": "Question 2",
         "body": "Body, as well",
         "correctAnswer": "84",
         "type": "multi-choice",
@@ -18,7 +18,7 @@
         "isPublished": true
     },
     {
-        "name": "Name3",
+        "name": "Question 3",
         "body": "Body also",
         "correctAnswer": "168",
         "type": "short-answer",

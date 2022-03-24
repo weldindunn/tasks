@@ -1,23 +1,33 @@
 import React, { useState } from "react";
-import { Container, Row, Button, Col } from "react-bootstrap";
+import { Container, Row, Button, Col, Form } from "react-bootstrap";
 import { Question } from "../quizzer-interfaces/question";
 import { QuestionEditMode } from "./QuestionEditMode";
 
 export function QuestionView({
-    questions,
     question,
     deleteQuestion,
-    editQuestion
+    editQuestion /*,
+    enterAnswer*/
 }: {
-    questions: Question[];
     question: Question;
     deleteQuestion: (name: string) => void;
     editQuestion: (name: string, newQuestion: Question) => void;
+    //enterAnswer: (name: string, answer: string) => void;
 }): JSX.Element {
     const [isEditing, setMode] = useState<boolean>(false);
+    const [answer, setAnswer] = useState<string>("");
 
     function editMode() {
         setMode(!isEditing);
+    }
+
+    function clearAnswer() {
+        setAnswer("");
+    }
+
+    function changeAnswer(event: React.ChangeEvent<HTMLInputElement>) {
+        setAnswer(event.target.value);
+        //enterAnswer(question.name, answer);
     }
 
     return (
@@ -28,7 +38,6 @@ export function QuestionView({
                         <Row>
                             <Col>
                                 <QuestionEditMode
-                                    questions={questions}
                                     question={question}
                                     deleteQuestion={deleteQuestion}
                                     editQuestion={editQuestion}
@@ -56,7 +65,27 @@ export function QuestionView({
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <span>Enter Answer input box</span>
+                                    <Form.Group as={Row}>
+                                        <Form.Label>Answer: </Form.Label>
+                                        <Form.Control
+                                            value={answer}
+                                            onChange={changeAnswer}
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        {answer === question.correctAnswer ? (
+                                            <span>Correct!</span>
+                                        ) : (
+                                            <span></span>
+                                        )}
+                                    </Col>
+                                    <Col>
+                                        <Button onClick={clearAnswer}>
+                                            Clear Answer
+                                        </Button>
+                                    </Col>
                                 </Row>
                             </Col>
                             <Col>

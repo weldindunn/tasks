@@ -3,13 +3,11 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Question } from "../quizzer-interfaces/question";
 
 export function QuestionEditMode({
-    questions,
     question,
     deleteQuestion,
     editQuestion,
     editMode
 }: {
-    questions: Question[];
     question: Question;
     deleteQuestion: (name: string) => void;
     editQuestion: (name: string, newQuestion: Question) => void;

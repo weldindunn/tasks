@@ -8,6 +8,12 @@ import questions from "../quizzer/questions.json";
 
 const QUESTIONS = questions.map((question): Question => ({ ...question }));
 
+/*
+function answerQuestion(question: Question, answer: string): Question {
+    return { ...question };
+}
+*/
+
 export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
     const [questionsVisible, setQuestionsVisible] = useState<boolean>(false);
     const [questions, setQuestions] = useState<Question[]>(QUESTIONS);
@@ -28,6 +34,19 @@ export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
             )
         );
     }
+
+    /*
+    function enterAnswer(name: string, answer: string): void {
+        setQuestions(
+            questions.map(
+                (question: Question): Question =>
+                    question.name === name
+                        ? answerQuestion(question, answer)
+                        : question
+            )
+        );
+    }
+    */
 
     function makeQuestionsVisible(): void {
         setQuestionsVisible(true);
@@ -68,6 +87,7 @@ export function QuizView({ quiz }: { quiz: Quiz }): JSX.Element {
                             questions={questions}
                             deleteQuestion={deleteQuestion}
                             editQuestion={editQuestion}
+                            //enterAnswer={enterAnswer}
                         ></QuestionList>
                         <Button onClick={makeQuestionsInvisible}>
                             End Quiz
